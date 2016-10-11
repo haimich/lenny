@@ -1,0 +1,24 @@
+{
+  "name": "lenny",
+  "version": "1.0.0",
+  "description": "An ldap client written in Electron",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haimich/lenny.git"
+  },
+  "author": "",
+  "license": "Apache",
+  "bugs": {
+    "url": "https://github.com/haimich/lenny/issues"
+  },
+  "homepage": "https://github.com/haimich/lenny#readme",
+  "dependencies": {
+    "electron": "^1.4.3",
+    "jstree": "^3.3.2",
+    "ldapjs": "^1.0.0"
+  }
+}
