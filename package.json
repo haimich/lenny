@@ -4,7 +4,8 @@
   "description": "An ldap client written in Electron",
   "main": "index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "rebuild": "electron-rebuild"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,13 @@
   },
   "homepage": "https://github.com/haimich/lenny#readme",
   "dependencies": {
+    "document-register-element": "^1.2.0",
     "electron": "^1.4.3",
     "jstree": "^3.3.2",
-    "ldapjs": "^1.0.0"
+    "ldapjs": "^1.0.0",
+    "materialize-css": "^0.97.7"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^1.2.1"
   }
 }

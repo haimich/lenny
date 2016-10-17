@@ -3,74 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Lenny</title>
+
+    <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
+            
     <link rel="stylesheet" href="node_modules/jstree/dist/themes/default/style.min.css">
+
+    <script src="node_modules/hammerjs/hammer.min.js"></script>
+    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>    
 </head>
 <body>
     
     <div id="tree"></div>
 
-    <script>
-        const ldap = require(`ldapjs`)
-        const client = ldap.createClient({
-            url: `ldap://ldap.forumsys.com:389`
-        })
-
-        const [ bind, search ] = promisify(client, 'bind', 'search')
-
-        bind(`cn=read-only-admin,dc=example,dc=com`, `password`)
-            .then(() => {
-                const opts = {
-                    // filter: `(&(l=Seattle)(email=*@foo.com))`,
-                    scope: `sub`,
-                    attributes: [ `dn`, `sn`, `cn` ]
-                }
-
-                return search(`dc=example,dc=com`, opts)
-            })
-            .then(buildTreeModel)
-            .then(model => {
-                require('jstree')
-                var $ = require(`jquery`)
-                $('#tree').jstree({
-                    core: { data: model }
-                })
-            })
-            .catch(console.error)
-
-        function buildTreeModel(emitter) {
-            const root = []
-            return new Promise((resolve, reject) => emitter
-                    .on(`searchEntry`, onEntry) 
-                    .on(`error`, reject)
-                    .on(`end`, () => resolve(root[0])))
-
-            function onEntry(entry) {
-                entry.dn.split(`,`).reverse().reduce((parent, part, i, parts) => {
-                    const text = part.substr(part.indexOf(`=`) + 1)
-
-                    if (i == parts.length - 1) {
-                        const node = { id: entry.dn, text }
-
-                        if (/^(dc|ou)/.test(node.id))
-                            node.children = []
-                        else
-                            node.icon = `jstree-file`
-
-                        parent.push(node) 
-                    } else {
-                        const newParent = parent.find(node => node.text == text)
-                        return newParent ? newParent.children : parent
-                    }
-                }, root)
-            }
-        }
-
-        function promisify(object, ...methods) {
-            return methods.map(method =>
-                (...args) => new Promise((resolve, reject) => client[method](...args,
-                    (error, result) => error ? reject(error) : resolve(result))))
-        }
-    </script>
+    <script src="src/main.js"></script>
 
 </body>
 </html>
