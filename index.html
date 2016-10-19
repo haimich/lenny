@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <title>Lenny</title>
 
-    <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
-            
+    <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">    
     <link rel="stylesheet" href="node_modules/jstree/dist/themes/default/style.min.css">
 
+    <!-- TODO Remove this as soon as we have Electron running on Chromium 54 (see http://caniuse.com/#feat=custom-elementsv1). -->
+    <script src="node_modules/@webcomponents/custom-elements/custom-elements.min.js"></script>
+
+    <!--
     <script src="node_modules/hammerjs/hammer.min.js"></script>
-    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>    
+    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    -->    
 </head>
 <body>
     
-    <div id="tree"></div>
-
     <script src="src/main.js"></script>
 
 </body>

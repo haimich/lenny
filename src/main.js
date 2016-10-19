@@ -5,7 +5,7 @@ const client = ldap.createClient({
   url: `ldap://ldap.forumsys.com:389`
 })
 
-const [bind, search] = promisify(client, `bind`, `search`)
+const [ bind, search ] = promisify(client, `bind`, `search`)
 
 bind(`cn=read-only-admin,dc=example,dc=com`, `password`)
   .then(() => {
@@ -19,10 +19,7 @@ bind(`cn=read-only-admin,dc=example,dc=com`, `password`)
   })
   .then(buildTreeModel)
   .then(model => {
-    const Tree = require('./src/tree.component.js')
-    const tree = new Tree()
-    tree.model = model
-    $('#tree').append(tree)
+    document.body.appendChild(new (require(`./src/ldap-tree.component`))(model))
   })
   .catch(console.error)
 

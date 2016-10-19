@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/haimich/lenny#readme",
   "dependencies": {
-    "document-register-element": "^1.2.0",
+    "@webcomponents/custom-elements": "^1.0.0-alpha.3",
     "electron": "^1.4.3",
     "jstree": "^3.3.2",
     "ldapjs": "^1.0.0",
